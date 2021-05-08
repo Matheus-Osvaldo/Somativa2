@@ -6,14 +6,14 @@ public class PhotoToken {
 
     private String data;
     private String descricacao;
-    private String photo;
+    private Uri photo;
 
 
     public PhotoToken() {
     }
 
 
-    public PhotoToken(String data, String descricacao, String photo) {
+    public PhotoToken(String data, String descricacao, Uri photo) {
         this.data = data;
         this.descricacao = descricacao;
         this.photo = photo;
@@ -40,11 +40,11 @@ public class PhotoToken {
     }
 
 
-    public String getPhoto() {
+    public Uri getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(Uri photo) {
         this.photo = photo;
     }
 }

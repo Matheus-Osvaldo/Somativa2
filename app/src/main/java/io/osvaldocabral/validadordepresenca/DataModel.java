@@ -22,12 +22,13 @@ public class DataModel {
 //        listTokens.add(new PhotoToken("", "", Uri.fromFile(new File(""))));
 
         // TODO Melhorar essa rota path
-//        File file = new File(Environment.getStorageDirectory().toString()+"/self/primary/Android/data/io.osvaldocabral.validadordepresenca/files/Pictures");
-//        File[] pictures = file.listFiles();
-//
-//        for (File f : pictures) {
-//            listTokens.add(new PhotoToken("", "", Uri.fromFile(f).toString()));
-//        }
+        File file = new File(Environment.getStorageDirectory().toString()+"/self/primary/Android/data/io.osvaldocabral.validadordepresenca/files/Pictures");
+        File[] pictures = file.listFiles();
+        if(pictures == null) return;
+
+        for (File f : pictures) {
+            listTokens.add(new PhotoToken("", "", Uri.fromFile(f)));
+        }
     }
 
     public static DataModel getInstance() {
