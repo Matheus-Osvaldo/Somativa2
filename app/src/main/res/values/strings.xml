@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ValidadorDePresenca</string>
+    <string name="take_a_picture">take a picture</string>
+    <string name="msg_no_camera_avaliable">No camera avaliable</string>
+    <string name="msg_camera_permission_denied">No camera avaliable</string>
+    <string name="msg_problem_getting_image">Problem getting the image from the camera app</string>
+</resources>
