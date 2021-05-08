@@ -139,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 if(file.exists()) {
                     DataModel.getInstance().addPhotoToken(new PhotoToken(new Date().toString(), "", file.getAbsolutePath()));
 
-                    galeryAddPic(file.getAbsolutePath());
-
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -148,17 +146,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, R.string.msg_problem_getting_image, Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-
-    private void galeryAddPic(String pathPhoto) {
-        Intent mediaScannerIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(pathPhoto);
-
-        Uri contentUri = Uri.fromFile(f);
-        mediaScannerIntent.setData(contentUri);
-
-        this.sendBroadcast(mediaScannerIntent);
     }
 
 }
