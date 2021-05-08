@@ -4,4 +4,9 @@
     <string name="msg_no_camera_avaliable">No camera avaliable</string>
     <string name="msg_camera_permission_denied">No camera avaliable</string>
     <string name="msg_problem_getting_image">Problem getting the image from the camera app</string>
+    <string name="image_details">Image details</string>
+    <string name="update">Updated:</string>
+    <string name="description">Description</string>
+    <string name="btn_update">Atualizar</string>
+    <string name="btn_exclude">Excluir</string>
 </resources>

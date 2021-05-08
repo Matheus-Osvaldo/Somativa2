@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -48,6 +47,22 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+        adapter.setClickListenner(new ImagesArrayAdapter.ClickListenner() {
+            @Override
+            public void onItemClick(int position, View view) {
+                DataModel.getInstance().indexToDetails = position;
+                Intent intent = new Intent(MainActivity.this, PhotoTokenDetails.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
 

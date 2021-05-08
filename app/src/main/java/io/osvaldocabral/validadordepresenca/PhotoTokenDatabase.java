@@ -99,7 +99,7 @@ public class PhotoTokenDatabase extends SQLiteOpenHelper {
         values.put(COL_DATE, photoToken.getData());
         values.put(COL_DESCRIPTION, photoToken.getDescricacao());
         values.put(COL_PHOTO, photoToken.getPhoto());
-        String query = String.format(" %s = % ", COL_ID, indexPhotoToken);
+        String query = String.format(" %s = %s ", COL_ID, indexPhotoToken);
         long id = database.update(DB_TABLE, values, query, null);
 
         database.close();

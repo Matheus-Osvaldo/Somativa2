@@ -17,7 +17,17 @@ import java.net.URI;
 public class ImagesArrayAdapter extends RecyclerView.Adapter<ImagesArrayAdapter.ViewHolder> {
 
 
-    File file;
+    private static ClickListenner clickListenner;
+
+
+    public interface ClickListenner {
+        void onItemClick(int position, View view) ;
+    }
+
+
+    public void setClickListenner(ClickListenner clickListenner) {
+        ImagesArrayAdapter.clickListenner = clickListenner;
+    }
 
 
     @NonNull
@@ -31,7 +41,7 @@ public class ImagesArrayAdapter extends RecyclerView.Adapter<ImagesArrayAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PhotoToken photoToken = DataModel.getInstance().getListPhotoTokens().get(position);
-        file = new File(photoToken.getPhoto());
+        File file = new File(photoToken.getPhoto());
         holder.imageView.setImageURI(Uri.fromFile(file));
     }
 
@@ -47,6 +57,16 @@ public class ImagesArrayAdapter extends RecyclerView.Adapter<ImagesArrayAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(clickListenner == null)
+                        return;
+
+                    clickListenner.onItemClick(getAdapterPosition(), v);
+                }
+            });
         }
     }
 }
