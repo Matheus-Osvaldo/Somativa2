@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 if(file.exists()) {
                     // Set image
                     // imageView.setImageURI(Uri.fromFile(file));
-                    DataModel.getInstance().listTokens.add(new PhotoToken("", "", Uri.fromFile(file)));
+                    DataModel.getInstance().listTokens.add(new PhotoToken("", "", file.getAbsolutePath()));
                     adapter.notifyDataSetChanged();
                 }
             }

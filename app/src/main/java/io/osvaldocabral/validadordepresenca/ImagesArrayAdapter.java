@@ -28,8 +28,8 @@ public class ImagesArrayAdapter extends RecyclerView.Adapter<ImagesArrayAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //File file = new File(DataModel.getInstance().listTokens.get(position).getPhoto());
-        holder.imageView.setImageURI(DataModel.getInstance().listTokens.get(position).getPhoto());
+        File file = new File(DataModel.getInstance().listTokens.get(position).getPhoto());
+        holder.imageView.setImageURI(Uri.fromFile(file));
     }
 
 
