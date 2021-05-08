@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -34,10 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
     String picturePath;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DataModel.getInstance().setContext(MainActivity.this);
 
         recyclerView = findViewById(R.id.recyclerView);
         adapter = new ImagesArrayAdapter();
@@ -76,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         if(requestCode == CAMERA_PERMISSION_CODE) {
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 sendCameraIntent();
@@ -101,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             if(pictureFile != null) {
                 picturePath = pictureFile.getAbsolutePath();
+
                 Uri photoUri = FileProvider.getUriForFile(MainActivity.this, "io.osvaldocabral.validadordepresenca.fileProvider", pictureFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(intent, CAMERA_INTENT_CODE);
@@ -115,14 +118,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if(requestCode == CAMERA_INTENT_CODE) {
             if(resultCode == RESULT_OK) {
                 File file = new File(picturePath);
                 if(file.exists()) {
-                    // Set image
-                    // imageView.setImageURI(Uri.fromFile(file));
-                    DataModel.getInstance().listTokens.add(new PhotoToken("", "", file.getAbsolutePath()));
+                    DataModel.getInstance().addPhotoToken(new PhotoToken(new Date().toString(), "", file.getAbsolutePath()));
+
+                    galeryAddPic(file.getAbsolutePath());
+
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -131,4 +134,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    private void galeryAddPic(String pathPhoto) {
+        Intent mediaScannerIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(pathPhoto);
+
+        Uri contentUri = Uri.fromFile(f);
+        mediaScannerIntent.setData(contentUri);
+
+        this.sendBroadcast(mediaScannerIntent);
+    }
+
 }
