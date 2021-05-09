@@ -61,13 +61,15 @@ public class DataModel {
     }
 
 
-    public long updatePhotoToken(int indexPhotoToken, PhotoToken photoToken) {
+    public long updatePhotoToken(PhotoToken photoToken) {
         photoToken.setData(new Date().toString());
-        return database.updatePhotoTokenInDB(indexPhotoToken, photoToken);
+        return database.updatePhotoTokenInDB(photoToken);
     }
 
 
-    public long excludePhotoToken(int indexPhotoToken) {
-        return database.deletePhotoTokenDB(indexPhotoToken);
+    public void excludePhotoToken(PhotoToken photoToken) {
+        database.deletePhotoTokenDB(photoToken);
+        listPhotoTokens.remove(photoToken);
+        new File(photoToken.getPhoto()).delete();
     }
 }

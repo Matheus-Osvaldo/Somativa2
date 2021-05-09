@@ -66,14 +66,14 @@ public class PhotoTokenDetails extends AppCompatActivity {
     public void updateDetailsClicked(View view) {
         String description = editTextTextDescription.getText().toString();
         photoToken.setDescricacao(description);
-        DataModel.getInstance().updatePhotoToken(indexDetail, photoToken);
+        DataModel.getInstance().updatePhotoToken(photoToken);
         Toast.makeText(this, "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
         super.onBackPressed();
     }
 
 
     public void excludePhotoTokenClicked(View view) {
-        DataModel.getInstance().excludePhotoToken(indexDetail);
+        DataModel.getInstance().excludePhotoToken(photoToken);
         Toast.makeText(this, "Token imagem excluído com sucesso!", Toast.LENGTH_LONG).show();
         super.onBackPressed();
     }

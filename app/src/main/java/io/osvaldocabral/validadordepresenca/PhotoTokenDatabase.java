@@ -92,14 +92,14 @@ public class PhotoTokenDatabase extends SQLiteOpenHelper {
     }
 
 
-    public long updatePhotoTokenInDB(int indexPhotoToken, PhotoToken photoToken) {
+    public long updatePhotoTokenInDB(PhotoToken photoToken) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(COL_DATE, photoToken.getData());
         values.put(COL_DESCRIPTION, photoToken.getDescricacao());
         values.put(COL_PHOTO, photoToken.getPhoto());
-        String query = String.format(" %s = %s ", COL_ID, indexPhotoToken);
+        String query = String.format(" %s = %s ", COL_ID, photoToken.getId());
         long id = database.update(DB_TABLE, values, query, null);
 
         database.close();
@@ -108,9 +108,9 @@ public class PhotoTokenDatabase extends SQLiteOpenHelper {
     }
 
 
-    public long deletePhotoTokenDB(int indexPhotoToken) {
+    public long deletePhotoTokenDB(PhotoToken photoToken) {
         SQLiteDatabase database = getWritableDatabase();
-        String query = String.format(" %s = %s ", COL_ID, indexPhotoToken);
+        String query = String.format(" %s = %s ", COL_ID, photoToken.getId());
 
         long id = database.delete(DB_TABLE, query, null);
 

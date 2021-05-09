@@ -1,7 +1,5 @@
 package io.osvaldocabral.validadordepresenca;
 
-import android.net.Uri;
-
 public class PhotoToken {
 
     private long id;

@@ -1,7 +1,5 @@
 package io.osvaldocabral.validadordepresenca;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
-import java.net.URI;
 
 public class ImagesArrayAdapter extends RecyclerView.Adapter<ImagesArrayAdapter.ViewHolder> {
 
@@ -54,6 +51,7 @@ public class ImagesArrayAdapter extends RecyclerView.Adapter<ImagesArrayAdapter.
     
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
