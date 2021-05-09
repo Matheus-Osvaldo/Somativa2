@@ -1,4 +1,4 @@
-package io.osvaldocabral.validadordepresenca;
+package io.osvaldocabral.validadordepresenca.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,10 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import io.osvaldocabral.validadordepresenca.DataModel;
+import io.osvaldocabral.validadordepresenca.R;
+import io.osvaldocabral.validadordepresenca.model.PhotoToken;
+
 public class PhotoTokenDetails extends AppCompatActivity {
 
     TextView textViewDate;
@@ -26,7 +30,7 @@ public class PhotoTokenDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_token_details);
-        setTitle("Details");
+        setTitle(getString(R.string.title_details));
 
         indexDetail = DataModel.getInstance().indexToDetails;
         photoToken = DataModel.getInstance().getListPhotoTokens().get(indexDetail);
@@ -49,15 +53,13 @@ public class PhotoTokenDetails extends AppCompatActivity {
                 imageViewDetail.setScaleY(scale);
             }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
-            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
     }
@@ -67,14 +69,14 @@ public class PhotoTokenDetails extends AppCompatActivity {
         String description = editTextTextDescription.getText().toString();
         photoToken.setDescricacao(description);
         DataModel.getInstance().updatePhotoToken(photoToken);
-        Toast.makeText(this, "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.msg_alert_updated_successfully, Toast.LENGTH_LONG).show();
         super.onBackPressed();
     }
 
 
     public void excludePhotoTokenClicked(View view) {
         DataModel.getInstance().excludePhotoToken(photoToken);
-        Toast.makeText(this, "Token imagem excluído com sucesso!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.msg_alert_successfully_deleted, Toast.LENGTH_LONG).show();
         super.onBackPressed();
     }
 

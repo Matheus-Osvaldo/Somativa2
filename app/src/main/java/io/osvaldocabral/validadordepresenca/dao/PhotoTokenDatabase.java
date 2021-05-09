@@ -1,5 +1,4 @@
-package io.osvaldocabral.validadordepresenca;
-
+package io.osvaldocabral.validadordepresenca.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
+
+import io.osvaldocabral.validadordepresenca.model.PhotoToken;
 
 
 public class PhotoTokenDatabase extends SQLiteOpenHelper {

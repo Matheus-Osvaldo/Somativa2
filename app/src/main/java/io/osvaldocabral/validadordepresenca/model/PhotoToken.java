@@ -1,4 +1,4 @@
-package io.osvaldocabral.validadordepresenca;
+package io.osvaldocabral.validadordepresenca.model;
 
 public class PhotoToken {
 

@@ -1,27 +1,22 @@
 package io.osvaldocabral.validadordepresenca;
 
-import android.content.ContentProvider;
-import android.content.ContentValues;
 import android.content.Context;
-import android.net.Uri;
-import android.os.Environment;
-import android.util.Log;
 import android.widget.Toast;
-
-import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 
+import io.osvaldocabral.validadordepresenca.dao.PhotoTokenDatabase;
+import io.osvaldocabral.validadordepresenca.model.PhotoToken;
+
 public class DataModel {
 
 
     private static DataModel instance = new DataModel();
+    private ArrayList<PhotoToken> listPhotoTokens;
     private PhotoTokenDatabase database;
     private Context context;
-
-    private ArrayList<PhotoToken> listPhotoTokens;
 
     public int indexToDetails;
 
@@ -54,7 +49,7 @@ public class DataModel {
             listPhotoTokens.add(photoToken);
         }
         else {
-            Toast.makeText(context, "Erro ao salvar foto!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.msg_error_save_photo, Toast.LENGTH_LONG).show();
         }
 
         return id;

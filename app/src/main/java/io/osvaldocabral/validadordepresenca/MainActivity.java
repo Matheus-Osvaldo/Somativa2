@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import io.osvaldocabral.validadordepresenca.controller.PhotoTokenDetails;
+import io.osvaldocabral.validadordepresenca.model.PhotoToken;
+
 public class MainActivity extends AppCompatActivity {
 
     static final int CAMERA_PERMISSION_CODE = 2001;
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_FINISH_ON_COMPLETION, true);
         if(intent.resolveActivity(getPackageManager()) != null) {
-            String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+            String timeStamp = new SimpleDateFormat(getString(R.string.pattern_datetime)).format(new Date());
             String picName = "pic_" + timeStamp;
             File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             File pictureFile = null;
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                 File file = new File(picturePath);
                 if(file.exists()) {
-                    DataModel.getInstance().addPhotoToken(new PhotoToken(new Date().toString(), "", file.getAbsolutePath()));
+                    DataModel.getInstance().addPhotoToken(new PhotoToken(new Date().toString(), getString(R.string.value_new_photo), file.getAbsolutePath()));
 
                     adapter.notifyDataSetChanged();
                 }

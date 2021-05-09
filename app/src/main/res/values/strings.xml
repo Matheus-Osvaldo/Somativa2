@@ -9,4 +9,10 @@
     <string name="description">Description</string>
     <string name="btn_update">Atualizar</string>
     <string name="btn_exclude">Excluir</string>
+    <string name="msg_error_save_photo">Erro ao salvar foto!</string>
+    <string name="pattern_datetime">yyyyMMddHHmmss</string>
+    <string name="value_new_photo">Nova foto</string>
+    <string name="title_details">Details</string>
+    <string name="msg_alert_updated_successfully">Atualizado com sucesso!</string>
+    <string name="msg_alert_successfully_deleted">Token imagem excluído com sucesso!</string>
 </resources>

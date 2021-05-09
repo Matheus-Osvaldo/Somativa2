@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 
+import io.osvaldocabral.validadordepresenca.model.PhotoToken;
+
 public class ImagesArrayAdapter extends RecyclerView.Adapter<ImagesArrayAdapter.ViewHolder> {
 
 
